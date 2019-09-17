@@ -90,14 +90,16 @@ Procedure:
     * NLP topic modeling etc
 
 16. export:
-    \copy states to 'states.csv' delimiter ',' csv;
-    \copy cities to 'cities.csv' delimiter ',' csv;
-    \copy keywords to 'keywords.csv' delimiter ',' csv;
-    \copy models to 'models.csv' delimiter ',' csv;
-    \copy topics_keywords to 'topics_keywords.csv' delimiter ',' csv;
-    \copy topics_geo to 'topics_geo.csv' delimiter ',' csv;
-    \copy topics to 'topics.csv' delimiter ',' csv;
-    \copy topics_archive to 'topics_archive.csv' delimiter ',' csv;
+    \copy states to 'data/states.csv' delimiter ',' csv;
+    \copy cities to 'data/cities.csv' delimiter ',' csv;
+    \copy keywords to 'data/keywords.csv' delimiter ',' csv;
+    \copy models to 'data/models.csv' delimiter ',' csv;
+    \copy topics_keywords to 'data/topics_keywords.csv' delimiter ',' csv;
+    \copy topics_geo to 'data/topics_geo.csv' delimiter ',' csv;
+    \copy topics to 'data/topics.csv' delimiter ',' csv;
+    \copy topics_archive to 'data/topics_archive.csv' delimiter ',' csv;
+    \copy states_archive to 'data/states_archive.csv' delimiter ',' csv;
+    \copy cities_archive to 'data/cities_archive.csv' delimiter ',' csv;
 
     copy local to stage:
     scp *.csv ec2metisprod:projects/rp/data
@@ -105,14 +107,8 @@ Procedure:
     import:
     * regenerate tables
 
-    \copy states from 'data/states.csv' delimiter ',' csv;
-    \copy cities from 'data/cities.csv' delimiter ',' csv;
-    \copy keywords from 'data/keywords.csv' delimiter ',' csv;
-    \copy models from 'data/models.csv' delimiter ',' csv;
-    \copy topics from 'data/topics.csv' delimiter ',' csv;
-    \copy topics_geo from 'data/topics_geo.csv' delimiter ',' csv;
-    \copy topics_keywords from 'data/topics_keywords.csv' delimiter ',' csv;
-    \copy topics_archive from 'data/topics_archive.csv' delimiter ',' csv;
+    * run:
+        psql -d rpdb < ./sql/export_tables.sql
 
 17. local wget to scrape website
     cd ~/python/projects/metis/project_5/cached_site
