@@ -1,6 +1,7 @@
 # custom directories
 tests/
 bak/
+data/
 
 # custom score metric
 ascore.py
