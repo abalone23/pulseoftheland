@@ -12,7 +12,7 @@ api = PushshiftAPI()
 with open('../data/df_states.pkl', 'rb') as fp:
     df_states = pickle.load(fp)
 
-start = '2018-08'
+start = '2019-01'
 num_days = 430
 state_subs = df_states['state_sub'].tolist()
 

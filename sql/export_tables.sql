@@ -1,0 +1,10 @@
+\copy states to 'data/states.csv' delimiter ',' csv;
+\copy cities to 'data/cities.csv' delimiter ',' csv;
+\copy keywords to 'data/keywords.csv' delimiter ',' csv;
+\copy models to 'data/models.csv' delimiter ',' csv;
+\copy topics_keywords to 'data/topics_keywords.csv' delimiter ',' csv;
+\copy topics_geo to 'data/topics_geo.csv' delimiter ',' csv;
+\copy topics to 'data/topics.csv' delimiter ',' csv;
+\copy topics_archive to 'data/topics_archive.csv' delimiter ',' csv;
+\copy states_archive to 'data/states_archive.csv' delimiter ',' csv;
+\copy cities_archive to 'data/cities_archive.csv' delimiter ',' csv;

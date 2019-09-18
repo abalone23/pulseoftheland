@@ -80,7 +80,8 @@ Procedure:
 
 13. create_pg_tables.sql
     * create Postgres states and cities tables
-        * psql -d rpdb < create_pg_tables.sql
+        * run:
+            psql -d rpdb < ./sql/create_pg_tables.sql
         * Note: CREATE DATABASE rpdb; should be run previously
 
 14. prep_pg_tables.ipynb
@@ -94,7 +95,7 @@ Procedure:
         psql -d rpdb < ./sql/export_tables.sql
 
     copy local to stage:
-    scp *.csv ec2metisprod:projects/rp/data
+    scp data/*.csv ec2metisprod:projects/rp/data
 
     import:
     * regenerate tables
