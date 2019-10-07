@@ -1,14 +1,19 @@
 from rpulse import app
 from flask import render_template, url_for, flash, redirect, request
-# from rpulse.models import States, Cities, Topics, Keywords, Topics_geo, Topics_keywords
 import numpy as np
 import pandas as pd
 import psycopg2 as pg
 import pickle
-# from sqlalchemy import and_, func
 from collections import defaultdict, OrderedDict, Counter
 
-con = pg.connect("dbname=rpdb user=asilver host=localhost")
+POSTGRES_USER = app.config["POSTGRES_USER"]
+POSTGRES_HOST = app.config["POSTGRES_HOST"]
+POSTGRES_PORT = app.config["POSTGRES_PORT"]
+POSTGRES_RMT_DB = app.config["POSTGRES_RMT_DB"]
+
+SECRET_KEY = app.config["SECRET_KEY"]
+
+con = pg.connect(f'dbname={POSTGRES_RMT_DB} user={POSTGRES_USER} host={POSTGRES_HOST}')
 
 @app.route("/")
 def index():
