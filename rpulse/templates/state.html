@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">United States</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ state_info['state_name'] }}</li>
+        </ol>
+    </nav>
+
+    <h1>{{ state_info['state_name'] }}</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr><td>Population</td><td>{{ state_info['pop_2018'] }}</td></tr>
+                    <tr><td nowrap>Median Income</td><td>${{ state_info['median_hh_income'] }}</td></tr>
+                    <tr><td nowrap><a href="https://www.reddit.com/r/{{ state_info['state_sub'] }}/">Reddit Subscribers</a></td><td width="100%">{{ state_info['sub_cnt'] }}</td></tr>
+                    <tr><td>Sentiment</td><td>
+                        {% if state_info['sentiment_rating'] == 'pos' %}
+                            <span style='font-size:26px;'>&#128512;</span>
+                        {% elif state_info['sentiment_rating'] == 'neg' %}
+                            <span style='font-size:26px;'>&#128533;</span>
+                        {% else %}
+                            <span style='font-size:26px;'>&#128528;</span>
+                        {% endif %}
+                    </td></tr>
+                    <tr><td>Score</td><td>
+                    {% if state_info['ascore'] > 80 %}
+                        <button type="button" class="btn btn-success"><span class="badge badge-light">{{ state_info['ascore'] | safe }}</span></button></td>
+                    {% elif state_info['ascore'] > 65 %}
+                        <button type="button" class="btn btn-warning"><span class="badge badge-light">{{ state_info['ascore'] | safe }}</span></button></td>
+                    {% else %}
+                        <button type="button" class="btn btn-danger"><span class="badge badge-light">{{ state_info['ascore'] | safe }}</span></button></td>
+                    {% endif %}
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+            <figure class="figure">
+                    <img src="/graphs/state_{{ state_abbr | lower }}.png" class="img-fluid">
+            </figure>
+        </div>
+        <div class="col">
+            <figure class="figure">
+                <img src="/maps/state_{{ state_abbr | lower }}.png" class="img-fluid">
+            </figure>
+        </div>
+    </div>
+</div>
+
+    <table class="table">
+        <thead><th>City</th><th>Population</th><th nowrap>Median Income</th><th>Sentiment</th><th>Score</th><th>Topics</th></thead>
+        <tbody>
+        {% for city in cities %}
+            <tr>
+                <td nowrap><a href="/loc/{{ state_abbr }}/{{ cities[city][2] }}.html">{{ cities[city][1]}}</a></td>
+                <td style="padding-right: 10px; text-align: right;">{{ '{0:,}'.format(cities[city][0]) }}</td>
+                <td style="padding-right: 10px; text-align: center;">${{ '{0:,}'.format(cities[city][5]) }}</td>
+                <td style="padding-right: 10px; text-align: center;">
+                        {% if cities[city][6] == 'pos' %}
+                            <span style='font-size:26px;'>&#128512;</span>
+                        {% elif cities[city][6] == 'neg' %}
+                            <span style='font-size:26px;'>&#128533;</span>
+                        {% else %}
+                            <span style='font-size:26px;'>&#128528;</span>
+                        {% endif %}
+                    </td>
+                    {% if cities[city][7] > 75 %}
+                        <td><button type="button" class="btn btn-success"><span class="badge badge-light">{{ cities[city][7] | safe }}</span></td></button></td>
+                    {% elif cities[city][7] > 65 %}
+                        <td><button type="button" class="btn btn-warning"><span class="badge badge-light">{{ cities[city][7] | safe }}</span></td></button></td>
+                    {% else %}
+                        <td><button type="button" class="btn btn-danger"><span class="badge badge-light">{{ cities[city][7] | safe }}</span></td></button></td>
+                    {% endif %}
+                <td width="100%">{{ cities[city][3]  | safe }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

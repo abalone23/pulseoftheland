@@ -8,22 +8,22 @@ from shapely.geometry import Point, Polygon
 
 plt.rc('figure', max_open_warning = 0)
 
-project_path = os.path.join(os.path.expanduser('~'),'projects/rp')
+# project_path = os.path.join(os.path.expanduser('~'),'projects/rp')
 
-with open('../data/df_states.pkl', 'rb') as fp:
+with open('data/df_states.pkl', 'rb') as fp:
     df_states = pickle.load(fp)
-with open('../data/df_states_metrics.pkl', 'rb') as fp:
+with open('data/df_states_metrics.pkl', 'rb') as fp:
     df_states_metrics = pickle.load(fp)
 df_states_all = pd.merge(df_states, df_states_metrics, on='state_sub')
 
-with open('../data/df_cities.pkl', 'rb') as fp:
+with open('data/df_cities.pkl', 'rb') as fp:
     df_cities = pickle.load(fp)
-with open('../data/df_cities_metrics.pkl', 'rb') as fp:
+with open('data/df_cities_metrics.pkl', 'rb') as fp:
     df_cities_metrics = pickle.load(fp)
 df_cities_all = pd.merge(df_cities, df_cities_metrics, on='city_sub')
 
-usa = gpd.read_file('../data/maps/states_21basic/states.shp')
-usa_continental = gpd.read_file('../data/maps/states_21basic/states.shp')
+usa = gpd.read_file('data/maps/states_21basic/states.shp')
+usa_continental = gpd.read_file('data/maps/states_21basic/states.shp')
 crs = {'init': 'epsg:4326'}
 
 geometry_cities = [Point(xy) for xy in zip( df_cities_all['city_lng'], df_cities_all['city_lat'])]
@@ -70,7 +70,7 @@ for x, y, label in zip(geo_df_cities_continental.geometry.x, geo_df_cities_conti
     if len(geo_df_cities_continental[(geo_df_cities_continental['pop_2018'] > 1000000) & (geo_df_cities_continental['city_short'] == label)]) == 1:
         ax.annotate(label, xy=(x, y), xytext=(3, 3), textcoords='offset points', size=20, weight='bold')
 plt.axis('off');
-plt.savefig('../data/maps/united_states.png', transparent=True, bbox_inches='tight')
+plt.savefig('static/maps/united_states.png', transparent=True, bbox_inches='tight')
 
 
 # create state maps
@@ -111,7 +111,7 @@ for state_fip in df_states_all['state_fip']:
                  ].plot(ax=ax, markersize=100, color='yellow', marker='o', alpha=.7);
 
     plt.axis('off');
-    plt.savefig('../data/maps/state_{state_abbr.lower()}.png', transparent=True, bbox_inches='tight')
+    plt.savefig(f'static/maps/state_{state_abbr.lower()}.png', transparent=True, bbox_inches='tight')
 
 # create city maps
 for state_fip in df_states_all['state_fip']:
@@ -157,4 +157,4 @@ for state_fip in df_states_all['state_fip']:
                 ax.annotate(label, xy=(x, y), xytext=(3, 3), textcoords='offset points', size=16)
         
         plt.axis('off');
-        plt.savefig('../data/maps/city_{state_abbr.lower()}_{city_short_clean}.png', transparent=True, bbox_inches='tight')
+        plt.savefig(f'static/maps/city_{state_abbr.lower()}_{city_short_clean}.png', transparent=True, bbox_inches='tight')

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<script type="text/javascript">
+setTimeout(function(){
+    odometer.innerHTML = {{data}};
+}, 1000);
+</script>
+
+<h1>Health Care Insured Likelihood</h1>
+
+{% if data < 50 %}
+    <div style="text-align: center!important; color: red;" id="odometer" class="odometer">00</div><span style="font-size:50px;">%</span>
+    <p><a href="https://www.healthcarebythenumbers.com/predict"><small>Try Again</small></a></p>
+    <!-- <div style="text-align: center; font-weight:bold; font-size: 1000%; color: red;">{{data}}%</div> -->
+{% else %}
+    <div style="text-align: center!important; color: green;" id="odometer" class="odometer">00</div><span style="font-size:50px;">%</span>
+    <p><a href="https://www.healthcarebythenumbers.com/predict"><small>Try Again</small></a></p>
+    <!-- <div style="text-align: center; font-weight:bold; font-size: 1000%; color: green;">{{data}}%</div> -->
+{% endif %}
+{% endblock content %}

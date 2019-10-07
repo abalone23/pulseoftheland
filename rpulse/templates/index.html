@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{title}}</h1>
+
+<figure class="figure">
+    <img src="/maps/united_states.png" class="img-fluid">
+</figure>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+<table id="example" class="table table-sm">
+    <thead class="thead-dark">
+        <th scope="col" nowrap style="text-align: left;">State</th>
+        <th scope="col" nowrap style="text-align: left;">Population</th>
+        <th scope="col" nowrap style="text-align: left;">Median Income</th>
+        <th scope="col" nowrap style="text-align: left;">Sentiment</th>
+        <th scope="col" nowrap style="text-align: left;">Score</th>
+        <th scope="col" nowrap style="text-align: left;">Topics</th>
+    </thead>
+    <tbody>
+        {% for state in states %}
+        <tr>
+            <td nowrap><a href="/loc/{{ states[state][1] }}.html">{{ states[state][0] }}</a></td>
+            <td style="padding-right: 10px; text-align: right;">{{ '{0:,}'.format(states[state][2]) }}</td>
+            <td style=" text-align: center;">${{ '{0:,}'.format(states[state][5]) }}K</td>
+            <td style="padding-right: 10px; text-align: center;">
+                {% if states[state][6] == 'pos' %}
+                    <span style='font-size:26px;'>&#128512;</span>
+                {% elif states[state][6] == 'neg' %}
+                    <span style='font-size:26px;'>&#128533;</span>
+                {% else %}
+                    <span style='font-size:26px;'>&#128528;</span>
+                {% endif %}
+            </td>
+            {% if states[state][7] > 75 %}
+                <td><button type="button" class="btn btn-success"><span class="badge badge-light">{{ states[state][7] | safe }}</span></td></button></td>
+            {% elif states[state][7] > 65 %}
+                <td><button type="button" class="btn btn-warning"><span class="badge badge-light">{{ states[state][7] | safe }}</span></td></button></td>
+            {% else %}
+                <td><button type="button" class="btn btn-danger"><span class="badge badge-light">{{ states[state][7] | safe }}</span></td></button></td>
+            {% endif %}
+            <td width="100%">{{ states[state][3] | safe }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<div class="col-4">
+        <table class="table table-sm">
+                <thead class="thead-dark"><th>Top Cities</th><th>Score</th></thead>
+                <tbody>
+                    {% for tc in topcities %}
+                    <tr>
+                        <td><a href="/loc/{{ tc[2] }}/{{tc[1] }}.html">{{ tc[0] }}, {{tc[2] }}</a></td>
+                        {% if tc[4] > 75 %}
+                            <td><button type="button" class="btn btn-success"><span class="badge badge-light">{{ tc[4] | safe }}</span></td></button></td>
+                        {% elif tc[4] > 65 %}
+                            <td><button type="button" class="btn btn-warning"><span class="badge badge-light">{{ tc[4] | safe }}</span></td></button></td>
+                        {% else %}
+                            <td><button type="button" class="btn btn-danger"><span class="badge badge-light">{{ tc[4] | safe }}</span></td></button></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+</div>
+</div>
+{% endblock content %}

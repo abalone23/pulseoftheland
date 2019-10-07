@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid">
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">United States</a></li>
+        <li class="breadcrumb-item"><a href="/loc/{{ state_abbr }}.html">{{ city_info['state_name'] }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ city_info['city_name'] }}</li>
+    </ol>
+    </nav>
+    <h1>{{ city_info['city_name'] }}</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr><td>Population</td><td>{{ city_info['pop_2018'] }}</td></tr>
+                        <tr><td nowrap>Median Income</td><td>${{ city_info['median_hh_income'] }}</td></tr>
+                        <tr><td nowrap><a href="https://www.reddit.com/r/{{ city_info['city_sub'] }}/">Reddit Subscribers</a></td></a></td><td width="100%">{{ city_info['sub_cnt'] }}</td></tr>
+                        <tr><td>Sentiment</td><td>
+                            {% if city_info['sentiment_rating'] == 'pos' %}
+                                <span style='font-size:26px;'>&#128512;</span>
+                            {% elif city_info['sentiment_rating'] == 'neg' %}
+                                <span style='font-size:26px;'>&#128533;</span>
+                            {% else %}
+                                <span style='font-size:26px;'>&#128528;</span>
+                            {% endif %}
+                        </td></tr>
+                        <tr><td>Score</td><td>
+                            {% if city_info['ascore'] > 75 %}
+                                <button type="button" class="btn btn-success"><span class="badge badge-light">{{ city_info['ascore'] | safe }}</span></button></td>
+                            {% elif city_info['ascore'] > 65 %}
+                                <button type="button" class="btn btn-warning"><span class="badge badge-light">{{ city_info['ascore'] | safe }}</span></button></td>
+                            {% else %}
+                                <button type="button" class="btn btn-danger"><span class="badge badge-light">{{ city_info['ascore'] | safe }}</span></button></td>
+                            {% endif %}
+                        </td></tr>
+                    </tbody>
+                </table>
+                <figure class="figure">
+                        <img src="/graphs/city_{{ state_abbr | lower }}_{{ city_info['city_url'] }}.png" class="img-fluid">
+                </figure>
+            </div>
+            <div class="col">
+                <figure class="figure">
+                    <img src="/maps/city_{{ state_abbr | lower }}_{{ city_info['city_url'] }}.png" class="img-fluid">
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead><th>Topic</th><th>Keywords</th></thead>
+        <tbody>
+        {% for t in topic_dict %}
+            {% if t.startswith('Topic') %}
+                <tr><td style="text-align: center;">-</td><td>{{ topic_dict[t]|safe }}</td></tr>
+            {% else %}
+                <tr><td nowrap>{{ t | safe }}</td><td>{{ topic_dict[t]|safe }}</td></tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock content %}

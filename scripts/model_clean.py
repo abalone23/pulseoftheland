@@ -31,7 +31,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # NMF topics
-num_topics = 15
+num_topics = 10
 num_keywords = 8
 num_days = 90
 
@@ -86,7 +86,7 @@ def generate_models(posts, start, end):
                             'october', 'november', 'december', 'great', 'new', 'bos', 'thx',
                             'shit', 'penis', 'couldn', 'fuck', 'just', 'today', 'tomorrow',
                             'sort', 'item', 'anybody', 'list', 'post', 'page', 'dont', 'img',
-                            'wouldn', 'would', 'redditors']
+                            'wouldn', 'would', 'redditors', 'somebody', 'img']
 
     custom_stop_words = ' '.join(custom_stop_word_list)
     blob = TextBlob(custom_stop_words)
@@ -438,11 +438,13 @@ def generate_models(posts, start, end):
                     {'Entertainment': ['museum', 'play', 'music', 'fun', 'game', 'theater', 'theatre', 
                                         'comedy', 'movie']},
                     {'Housing': ['housing', 'apartment', 'lease', 'mortgage', 'rent', 'tenant', 
-                                    'rent', 'household', 'condo', 'hoa', 'lease', 'landlord']},
+                                    'rent', 'household', 'condo', 'hoa', 'lease', 'landlord',
+                                    'mold', 'house']},
                     {'Vehicles': ['vehicle', 'suv', 'car', 'truck']},
                     {'Transportation': ['transportation', 'car', 'road', 'train', 'highway', 'parking', 
                                         'truck', 'plane', 'traffic', 'passenger', 'driver', 'driving']},
                     {'Religion': ['religion', 'church', 'christ', 'jesus', 'lord']},
+                    {'Alcohol': ['alcohol', 'beer', 'wine', 'brewing']},
                     {'Public Transit': ['public', 'train', 'route', 'bus', 'passenger', 'subway', 
                                             'line', 'transfer', 'transit', 'muni', 'bart']},
                     {'Travel': ['travel', 'adventure', 'pack', 'camera']},
@@ -456,13 +458,13 @@ def generate_models(posts, start, end):
                     {'Crime': ['crime', 'property crime', 'theft', 'robbery', 'police', 'abuse', 'homicide',
                                 'suspect', 'offender']},
                     {'Drugs': ['drug', 'drug problem', 'violation', 'order', 'substance']},
-                    {'Homeless': ['homeless', 'problem', 'shelter', 'policy', 'depression']},
+                    {'Homelessness': ['homeless', 'problem', 'shelter', 'policy', 'depression']},
                     {'Jobs': ['career', 'job', 'resume', 'company', 'service', 'interview']},
                     {'Beaches': ['beach', 'sea', 'pier', 'island']},
                     {'Pizza': ['pizza', 'pepperoni', 'topping', 'pizza hut']},
                     {'Gaming': ['game', 'magic', 'video game', 'twitch']},
                     {'Pets': ['pet', 'cat', 'dog', 'fish', 'shelter', 'animal', 'breed', 'park', 'owner',
-                                'rabbit']},
+                                'rabbit', 'kitten']},
                     {'Service Animals': ['animal', 'service animal', 'dog', 'blind']},
                     {'Business': ['industry', 'business', 'meetup', 'job']},
                     {'Night Life': ['night', 'bar', 'drink', 'downtown']},
@@ -485,7 +487,9 @@ def generate_models(posts, start, end):
                     {'Air Transportation': ['air', 'jet', 'aircraft', 'plane']},
                     {'Parking': ['parking', 'garage']},
                     {'Tatoos': ['tatoos', 'artist']},
+                    {'Housing Problems': ['water', 'damage', 'water damage', 'mold']},
                     {'Smoking': ['cigarette', 'cigarettes', 'vape', 'cbd', 'cannabis']},
+                    {'Marijuana': ['cbd', 'marijuana', 'dispensary', 'weed', 'cannabis', 'cbd oil']},
                     {'Disney': ['disney', 'disneyland', 'disneyworld']},
                     {'Internet Service': ['router', 'speed', 'xfinity', 'verizon', 'modem', 'router modem']}
                 ]
