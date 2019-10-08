@@ -5,10 +5,11 @@ from datetime import datetime
 import pickle
 import datetime as dt
 
-with open('../data/df_city_subs_raw.pkl', 'rb') as fp:
+with open('data/df_city_subs_raw.pkl', 'rb') as fp:
     df_city_subs_raw = pickle.load(fp)
 
 def clean_cities(subs):
+    # these subreddits are not for valid US cities:
     cities2remove = ['newyork', 'Hamilton', 'Sparkster', 'georgetown', 'TransGoneWild', 'ElizabethTurner',
                  'Temple', 'tylerthecreator', 'lynnchu', 'LargeSnorlax', 'HollywoodUndead', 'SouthgateMemes',
                  'sandy', 'wyoming', 'enigmacatalyst', 'melbourne', 'reading', 'ontario', 'Washington',
@@ -65,4 +66,8 @@ df_city_subs = clean_cities(df_city_subs_raw)
 df_city_subs[['state_fip', 'city_fip']] = df_city_subs['state_city_id'].str.extract(r'(\d{1,2})(\d{5})$', expand=True)
 df_city_subs = df_city_subs.astype({'state_fip': int})
 
-pickle.dump(df_city_subs, open('../data/df_city_subs.pkl', 'wb'))
+pickle.dump(df_city_subs, open('data/df_city_subs.pkl', 'wb'))
+
+# copy state name and subreddit to csv file:
+city_subs = df_city_subs[['city_state', 'city_sub']]
+city_subs.to_csv('reference/city_subs.csv', index=False)

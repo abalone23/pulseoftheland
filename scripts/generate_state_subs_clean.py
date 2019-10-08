@@ -12,7 +12,7 @@ PRAW_CLIENT_ID = os.getenv('PRAW_CLIENT_ID')
 PRAW_CLIENT_SECRET = os.getenv('PRAW_CLIENT_SECRET')
 PRAW_USER_AGENT = os.getenv('PRAW_USER_AGENT')
 
-with open('../data/df_state_subs_raw.pkl', 'rb') as fp:
+with open('data/df_state_subs_raw.pkl', 'rb') as fp:
     df_state_subs_raw = pickle.load(fp)
 
 def clean_states(subs):
@@ -20,6 +20,7 @@ def clean_states(subs):
                         client_secret=PRAW_CLIENT_SECRET,
                         user_agent=PRAW_USER_AGENT)
 
+    # replace invalid states with correct sub-reddits:
     states2add = {9: 'Connecticut', 42: 'Pennsylvania'}
 
     states2add_list = []
@@ -33,4 +34,8 @@ def clean_states(subs):
 
 df_state_subs = clean_states(df_state_subs_raw)
 
-pickle.dump(df_state_subs, open('../data/df_state_subs.pkl', 'wb'))
+pickle.dump(df_state_subs, open('data/df_state_subs.pkl', 'wb'))
+
+# copy state names and subreddits to csv file for reference:
+state_subs = df_state_subs[['state_name', 'state_sub']]
+state_subs.to_csv('reference/state_subs.csv', index=False)
