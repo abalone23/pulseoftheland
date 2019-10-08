@@ -1,34 +1,47 @@
 import sys
+import argparse
 import numpy as np
 import pandas as pd
 import re
 import json
 from datetime import datetime, timedelta
+from time import sleep
 import pickle
-import datetime as dt
 from psaw import PushshiftAPI
 api = PushshiftAPI()
 
-with open('../data/df_states.pkl', 'rb') as fp:
+text = 'Get the latest NUMDAYS days of Reddit state data.'
+parser = argparse.ArgumentParser(description = text)
+parser.add_argument("--numdays", "-n", help="set # days to retrieve: 1 or 90")
+parser.add_argument("--quiet", "-q", help="suppress output", action="store_true")
+
+args = parser.parse_args()
+
+if args.quiet is not True:
+    if args.numdays:
+        if args.numdays == '1':
+            num_days = '5d'
+        elif args.numdays == '90':
+            num_days = '90d'
+        else:
+            print ('Error: Please select 1 or 90 days')
+            sys.exit(2)
+        print(f'# Days: {args.numdays}')
+
+with open('data/df_states.pkl', 'rb') as fp:
     df_states = pickle.load(fp)
 
-start = '2019-01'
-num_days = 430
 state_subs = df_states['state_sub'].tolist()
 
 #testing
 # city_subs = city_subs[:5]
 # city_subs = ['Alameda']
 
-def get_posts(subreddit, start, num_days):
-    start_epoch = int(datetime.strptime(start, '%Y-%m').timestamp())
-    start_epoch_date = datetime.strptime(start, '%Y-%m')
-    end_epoch_date = start_epoch_date + timedelta(days=num_days)
-    end_epoch = int(end_epoch_date.timestamp())
-
+def get_posts(subreddit):
     state_fip = str(df_states['state_fip'][df_states['state_sub'] == subreddit].values[0])
-
-    post_list = list(api.search_submissions(after=start_epoch, before=end_epoch,
+    
+    post_list = list(api.search_submissions(after=num_days,
+                                before='4d',
                                 subreddit=state_sub,
                                 stickied=False,
                                 sort='asc',
@@ -36,7 +49,7 @@ def get_posts(subreddit, start, num_days):
                                         'is_video', 'is_original_content', 'contest_mode', 'url',
                                         'media_only', 'locked'
                                        ]))
-
+    sleep(0.1)
     posts = []
     prev_post_id = 0
     prev_post_date_y = ''
@@ -64,10 +77,10 @@ def get_posts(subreddit, start, num_days):
         post_date_m = post_date_str.month
         post_date_y = post_date_str.year
 
-        # Save json file for previous month, only for files with over 10 documents:
-        if post_date_d != prev_post_date_d and prev_post_date_d != '' and len(posts) > 10:
+        # Save json file for previous day, only for files with over 5 documents:
+        if post_date_d != prev_post_date_d and prev_post_date_d != '' and len(posts) > 5:
             filename = (
-                        f'../data/reddit/states/{subreddit.lower()}_'
+                        f'data/reddit/states/{subreddit.lower()}_'
                         f'{str(prev_post_date_y)}_{str(prev_post_date_m).zfill(2)}_{str(prev_post_date_d).zfill(2)}.json'
                        )
             with open(filename, 'w') as fp:
@@ -75,7 +88,7 @@ def get_posts(subreddit, start, num_days):
             posts = [] # reset posts list for new day
         
         if len(selftext) > 50:
-            print(f'sub: {subreddit} id: {post_id} post_date: {post_date} title: {title}')
+            # print(f'sub: {subreddit} id: {post_id} post_date: {post_date} title: {title}')
 
             posts.append({
                 'geo_type': 'state',
@@ -100,4 +113,4 @@ def get_posts(subreddit, start, num_days):
         prev_post_date_y = post_date_y
 
 for state_sub in state_subs:
-    get_posts(state_sub, start, num_days)
+    get_posts(state_sub)
