@@ -1,0 +1,236 @@
+city_state,city_sub
+"Auburn city, Alabama",auburn
+"Birmingham city, Alabama",Birmingham
+"Mobile city, Alabama",mobile
+"Montgomery city, Alabama",montgomery
+"Tuscaloosa city, Alabama",tuscaloosa
+"Flagstaff city, Arizona",Flagstaff
+"Phoenix city, Arizona",phoenix
+"Scottsdale city, Arizona",Scottsdale
+"Tempe city, Arizona",Tempe
+"Tucson city, Arizona",Tucson
+"Little Rock city, Arkansas",LittleRock
+"Alameda city, California",alameda
+"Anaheim city, California",Anaheim
+"Bakersfield city, California",Bakersfield
+"Berkeley city, California",berkeley
+"Burbank city, California",burbank
+"Chico city, California",ChicoCA
+"Elk Grove city, California",ElkGrove
+"Folsom city, California",folsom
+"Fremont city, California",Fremont
+"Fresno city, California",fresno
+"Glendale city, California",glendale
+"Huntington Beach city, California",huntingtonbeach
+"Irvine city, California",irvine
+"Livermore city, California",Livermore
+"Long Beach city, California",longbeach
+"Los Angeles city, California",LosAngeles
+"Modesto city, California",Modesto
+"Mountain View city, California",mountainview
+"Napa city, California",napa
+"Newport Beach city, California",newportbeach
+"Oakland city, California",oakland
+"Oceanside city, California",Oceanside
+"Palo Alto city, California",paloalto
+"Pasadena city, California",pasadena
+"Redding city, California",Redding
+"Riverside city, California",Riverside
+"Roseville city, California",Roseville
+"San Diego city, California",sandiego
+"San Francisco city, California",sanfrancisco
+"San Jose city, California",SanJose
+"San Marcos city, California",sanmarcos
+"Santa Barbara city, California",SantaBarbara
+"Santa Clarita city, California",SantaClarita
+"Santa Cruz city, California",santacruz
+"Santa Monica city, California",SantaMonica
+"Santa Rosa city, California",santarosa
+"Stockton city, California",Stockton
+"Sunnyvale city, California",Sunnyvale
+"Temecula city, California",Temecula
+"Thousand Oaks city, California",thousandoaks
+"Visalia city, California",visalia
+"Boulder city, Colorado",boulder
+"Denver city, Colorado",Denver
+"Fort Collins city, Colorado",FortCollins
+"Greeley city, Colorado",Greeley
+"Longmont city, Colorado",Longmont
+"Loveland city, Colorado",loveland
+"Pueblo city, Colorado",pueblo
+"Hartford city, Connecticut",Hartford
+"New Haven city, Connecticut",newhaven
+"Boca Raton city, Florida",BocaRaton
+"Bradenton city, Florida",bradenton
+"Daytona Beach city, Florida",DaytonaBeach
+"Fort Myers city, Florida",FortMyers
+"Jacksonville city, Florida",jacksonville
+"Miami city, Florida",Miami
+"Orlando city, Florida",orlando
+"Pensacola city, Florida",Pensacola
+"St. Petersburg city, Florida",StPetersburgFL
+"Sarasota city, Florida",sarasota
+"Tallahassee city, Florida",Tallahassee
+"Tampa city, Florida",tampa
+"West Palm Beach city, Florida",WestPalmBeach
+"Alpharetta city, Georgia",alpharetta
+"Atlanta city, Georgia",Atlanta
+"Marietta city, Georgia",Marietta
+"Roswell city, Georgia",roswell
+"Savannah city, Georgia",savannah
+"Coeur d'Alene city, Idaho",coeurdalene
+"Chicago city, Illinois",chicago
+"Naperville city, Illinois",Naperville
+"Rockford city, Illinois",rockford
+"Bloomington city, Indiana",bloomington
+"Evansville city, Indiana",evansville
+"Fort Wayne city, Indiana",fortwayne
+"Lafayette city, Indiana",lafayette
+"South Bend city, Indiana",SouthBend
+"Ames city, Iowa",ames
+"Des Moines city, Iowa",desmoines
+"Iowa City city, Iowa",IowaCity
+"Kansas City city, Kansas",kansascity
+"Lawrence city, Kansas",Lawrence
+"Topeka city, Kansas",topeka
+"Wichita city, Kansas",wichita
+"Baton Rouge city, Louisiana",batonrouge
+"Lake Charles city, Louisiana",LakeCharles
+"New Orleans city, Louisiana",NewOrleans
+"Shreveport city, Louisiana",shreveport
+"Baltimore city, Maryland",baltimore
+"Frederick city, Maryland",frederickmd
+"Boston city, Massachusetts",boston
+"Somerville city, Massachusetts",Somerville
+"Springfield city, Massachusetts",Springfield
+"Waltham city, Massachusetts",Waltham
+"Ann Arbor city, Michigan",AnnArbor
+"Detroit city, Michigan",Detroit
+"Flint city, Michigan",flint
+"Grand Rapids city, Michigan",grandrapids
+"Lansing city, Michigan",lansing
+"Pontiac city, Michigan",Pontiac
+"Royal Oak city, Michigan",royaloak
+"Duluth city, Minnesota",duluth
+"Minneapolis city, Minnesota",Minneapolis
+"Plymouth city, Minnesota",plymouth
+"Billings city, Montana",Billings
+"Missoula city, Montana",missoula
+"Lincoln city, Nebraska",lincoln
+"Omaha city, Nebraska",Omaha
+"Las Vegas city, Nevada",LasVegas
+"Reno city, Nevada",Reno
+"Hoboken city, New Jersey",Hoboken
+"Jersey City city, New Jersey",jerseycity
+"Newark city, New Jersey",Newark
+"Albuquerque city, New Mexico",Albuquerque
+"Las Cruces city, New Mexico",LasCruces
+"Santa Fe city, New Mexico",SantaFe
+"Albany city, New York",Albany
+"Buffalo city, New York",Buffalo
+"Rochester city, New York",Rochester
+"Schenectady city, New York",schenectady
+"Syracuse city, New York",Syracuse
+"Troy city, New York",Troy
+"Asheville city, North Carolina",asheville
+"Burlington city, North Carolina",burlington
+"Charlotte city, North Carolina",Charlotte
+"Raleigh city, North Carolina",raleigh
+"Wilmington city, North Carolina",Wilmington
+"Fargo city, North Dakota",fargo
+"Akron city, Ohio",akron
+"Canton city, Ohio",canton
+"Cincinnati city, Ohio",cincinnati
+"Cleveland city, Ohio",Cleveland
+"Columbus city, Ohio",Columbus
+"Dayton city, Ohio",dayton
+"Lakewood city, Ohio",lakewood
+"Toledo city, Ohio",toledo
+"Youngstown city, Ohio",youngstown
+"Tulsa city, Oklahoma",tulsa
+"Beaverton city, Oregon",beaverton
+"Bend city, Oregon",Bend
+"Corvallis city, Oregon",corvallis
+"Eugene city, Oregon",Eugene
+"Hillsboro city, Oregon",hillsboro
+"Medford city, Oregon",Medford
+"Portland city, Oregon",Portland
+"Salem city, Oregon",SALEM
+"Erie city, Pennsylvania",Erie
+"Lancaster city, Pennsylvania",lancaster
+"Philadelphia city, Pennsylvania",philadelphia
+"Pittsburgh city, Pennsylvania",pittsburgh
+"Scranton city, Pennsylvania",Scranton
+"Providence city, Rhode Island",providence
+"Charleston city, South Carolina",Charleston
+"Greenville city, South Carolina",greenville
+"Rapid City city, South Dakota",RapidCity
+"Sioux Falls city, South Dakota",SiouxFalls
+"Chattanooga city, Tennessee",Chattanooga
+"Clarksville city, Tennessee",Clarksville
+"Knoxville city, Tennessee",Knoxville
+"Memphis city, Tennessee",memphis
+"Amarillo city, Texas",amarillo
+"Arlington city, Texas",arlington
+"Austin city, Texas",Austin
+"Dallas city, Texas",Dallas
+"Denton city, Texas",Denton
+"El Paso city, Texas",ElPaso
+"Fort Worth city, Texas",FortWorth
+"Frisco city, Texas",frisco
+"Galveston city, Texas",galveston
+"Houston city, Texas",houston
+"Lubbock city, Texas",Lubbock
+"McKinney city, Texas",McKinney
+"New Braunfels city, Texas",Newbraunfels
+"Plano city, Texas",plano
+"Richardson city, Texas",Richardson
+"Round Rock city, Texas",RoundRock
+"San Antonio city, Texas",sanantonio
+"Sugar Land city, Texas",sugarland
+"Waco city, Texas",Waco
+"Lehi city, Utah",lehighvalley
+"Logan city, Utah",Logan
+"Ogden city, Utah",ogden
+"Harrisonburg city, Virginia",harrisonburg
+"Lynchburg city, Virginia",lynchburg
+"Norfolk city, Virginia",norfolk
+"Portsmouth city, Virginia",Portsmouth
+"Roanoke city, Virginia",roanoke
+"Virginia Beach city, Virginia",VirginiaBeach
+"Bellevue city, Washington",bellevue
+"Bellingham city, Washington",Bellingham
+"Everett city, Washington",everett
+"Olympia city, Washington",olympia
+"Redmond city, Washington",redmond
+"Renton city, Washington",Renton
+"Seattle city, Washington",Seattle
+"Spokane city, Washington",Spokane
+"Tacoma city, Washington",Tacoma
+"Vancouver city, Washington",vancouver
+"Yakima city, Washington",Yakima
+"Green Bay city, Wisconsin",GreenBay
+"Kenosha city, Wisconsin",Kenosha
+"La Crosse city, Wisconsin",lacrosse
+"Milwaukee city, Wisconsin",milwaukee
+"New_York City, New York",nyc
+"Salt Lake City, Utah",SaltLakeCity
+"Washington, District of Columbia",washingtondc
+"Nashville, Tennessee",nashville
+"Indianapolis, Indiana",indianapolis
+"Oklahoma City, Oklahoma",okc
+"Louisville, Kentucky",Louisville
+"Colorado Springs, Colorado",ColoradoSprings
+"St. Louis, Missouri",StLouis
+"St. Paul, Minnesota",saintpaul
+"Lexington, Kentucky",lexington
+"Anchorage, Alaska",anchorage
+"Durham, North Carolina",bullcity
+"Sacramento, California",Sacramento
+"Aurora, Colorado",AuroraCO
+"Columbus, Georgia",ColumbusGA
+"Rochester, Minnesota",rochestermn
+"Springfield, Missouri",springfieldMO
+"St. Charles, Missouri",StCharlesMO
+"Provo, Utah",ProvoUtah
+"Cambridge, Massachusetts",CambridgeMA
