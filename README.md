@@ -1,10 +1,27 @@
 # Pulse of the Land
 ## Introduction
-[Pulse of the Land](https://www.pulseoftheland.com) tracks geographic areas ([states](https://github.com/abalone23/pulseoftheland/blob/master/reference/state_subs.csv) and [cities](https://github.com/abalone23/pulseoftheland/blob/master/reference/city_subs.csv)) around the United States based on sentiment analysis and topic modeling using posts from location-based subreddits on [Reddit](https://www.reddit.com) as well as demographic characteristics such as income and population from the census.
+[Pulse of the Land](https://www.pulseoftheland.com) tracks geographic areas ([states](https://github.com/abalone23/pulseoftheland/blob/master/reference/state_subs.csv) and [cities](https://github.com/abalone23/pulseoftheland/blob/master/reference/city_subs.csv)) throughout the United States based on sentiment analysis and topic modeling using posts from location-based subreddits on [Reddit](https://www.reddit.com) as well as demographic characteristics such as income and population from the census.
+
+![screenprint](https://github.com/abalone23/pulseoftheland/blob/master/images/potl-sp.png "screenprint")
+
+## Tools
+### Python
+Everything in this project is scripted using [Python](https://www.python.org/).
+* GeoPandas
+* Jupyter Notebooks
+### APIs
+* PRAW API
+* PSAW API
+* Google Maps API
+### Architecture
+* AWS
+    * EC2
+    * S3
+    * Route 53
 
 ## Data
 ### Reddit
-Data for the sentiment analysis and topic modeling is obtained from city and state location-based [Reddit](https://www.reddit.com) forums aka **subreddits** throughout the United States via the Pushshift.io API wrapper ([PSAW](https://github.com/dmarx/psaw)). Only locations with populations over 50,000 and over 1,000 subreddit subscribers are included. Metadata for initial subreddit subscriber count and selection was accessed via the Python Reddit API wrapper ([PRAW](https://praw.readthedocs.io/en/latest/))
+Data for the sentiment analysis and topic modeling is obtained from city and state location-based [Reddit](https://www.reddit.com) forums aka **subreddits** throughout the United States via the Pushshift.io API wrapper ([PSAW](https://github.com/dmarx/psaw)). Only locations with populations over 50,000 and over 1,000 subreddit subscribers are included. Metadata for initial subreddit subscriber count and selection is accessed via the Python Reddit API wrapper ([PRAW](https://praw.readthedocs.io/en/latest/))
 
 * [51 states](https://github.com/abalone23/pulseoftheland/blob/master/reference/state_subs.csv) including District of Columbia
     * [notebook](https://github.com/abalone23/pulseoftheland/blob/master/notebooks/generate_state_subs_raw.ipynb) (raw)
@@ -21,7 +38,7 @@ The demographic data comes from:
 ### Mapping
 Coordinates are retrieved using [Google Maps API](https://developers.google.com/maps/documentation) via the [googlemaps](https://github.com/googlemaps/google-maps-services-python) Python client library. ([notebook](https://github.com/abalone23/pulseoftheland/blob/master/notebooks/generate_latlongs.ipynb))
 
-Maps are generated using the [GeoPandas](GeoPandas). ([notebook](https://github.com/abalone23/pulseoftheland/blob/master/scripts/generate_maps.py))
+Maps are generated using the [GeoPandas](GeoPandas) library. ([notebook](https://github.com/abalone23/pulseoftheland/blob/master/scripts/generate_maps.py))
 ## Analysis
 ### Sentiment Analysis
 Sentiment analysis is performed using CountVectorizer with VADER.
