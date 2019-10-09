@@ -11,8 +11,8 @@ Information for the sentiment analysis and topic modeling is obtained from city 
 
 ### Census
 The demographic data comes from:
-* [Census](https://www.census.gov/data/tables/time-series/demo/popest/2010s-total-cities-and-towns.html) (population)
-* [American Community Survey](https://factfinder.census.gov/faces/nav/jsf/pages/download_center.xhtml) (median income)
+* [Census](https://www.census.gov/data/tables/time-series/demo/popest/2010s-total-cities-and-towns.html) - population ([view notebook](https://github.com/abalone23/pulseoftheland/blob/master/notebooks/generate_population.ipynb))
+* [American Community Survey](https://factfinder.census.gov/faces/nav/jsf/pages/download_center.xhtml) - median income ([view notebook](https://github.com/abalone23/pulseoftheland/blob/master/notebooks/generate_incomes.ipynb))
 
 ### Mapping
 Coordinates are retrieved using [Google Maps API](https://developers.google.com/maps/documentation) via the [googlemaps](https://github.com/googlemaps/google-maps-services-python) Python client library.
