@@ -12,7 +12,7 @@ api = PushshiftAPI()
 
 text = 'Get the latest NUMDAYS days of Reddit city data.'
 parser = argparse.ArgumentParser(description = text)
-parser.add_argument("--numdays", "-n", help="set # days to retrieve: 1 or 90")
+parser.add_argument("--numdays", "-n", help="set # days to retrieve: 1 or 180")
 parser.add_argument("--quiet", "-q", help="suppress output", action="store_true")
 
 args = parser.parse_args()
@@ -21,10 +21,10 @@ if args.quiet is not True:
     if args.numdays:
         if args.numdays == '1':
             num_days = '5d'
-        elif args.numdays == '90':
-            num_days = '90d'
+        elif args.numdays == '180':
+            num_days = '180d'
         else:
-            print ('Error: Please select 1 or 90 days')
+            print ('Error: Please select 1 or 180 days')
             sys.exit(2)
         print(f'# Days: {args.numdays}')
 

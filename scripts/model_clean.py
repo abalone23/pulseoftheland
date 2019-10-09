@@ -132,7 +132,7 @@ def generate_models(posts, start, end):
         post = post.replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '”')
         
         # remove special stop words
-        regex_pat = re.compile(r'update:|wibta|email|gmail|tldr|                              nbsp|\b.+_.+\b|\baaa.+\b|\bbbb.+\b', flags=re.IGNORECASE)
+        regex_pat = re.compile(r'update:|wibta|email|gmail|tldr|nbsp|\b.+_.+\b|\baaa.+\b|\bbbb.+\b', flags=re.IGNORECASE)
         post = re.sub(regex_pat, '', post)
         
         # collapse spaces
@@ -146,7 +146,7 @@ def generate_models(posts, start, end):
         topics_dict = {}
         for ix, topic in enumerate(nmf_model.components_):
             topics_dict[ix] = ", ".join([count_vectorizer.get_feature_names()[i] 
-                                        for i in topic.argsort()[:-num_keywords - 1:-1]])
+            for i in topic.argsort()[:-num_keywords - 1:-1]])
         return topics_dict
 
     # Preprocess the posts:
@@ -219,7 +219,7 @@ def generate_models(posts, start, end):
         else:
             sentiment_rating = 'neu' # neutral
         
-        query =  "UPDATE states SET sentiment_compound = %s, sentiment_rating = %s WHERE state_fip = %s"
+        query = "UPDATE states SET sentiment_compound = %s, sentiment_rating = %s WHERE state_fip = %s"
         
         data = (sentiment_compound, sentiment_rating, state_fip)       
         cursor.execute(query, data)
@@ -242,7 +242,7 @@ def generate_models(posts, start, end):
         else:
             sentiment_rating = 'neu' # neutral
 
-        query =  "UPDATE cities SET sentiment_compound = %s, sentiment_rating = %s WHERE city_sub = %s"
+        query = "UPDATE cities SET sentiment_compound = %s, sentiment_rating = %s WHERE city_sub = %s"
         
         data = (sentiment_compound, sentiment_rating, subreddit)       
         cursor.execute(query, data)
@@ -273,7 +273,7 @@ def generate_models(posts, start, end):
         df_metrics['ascore'] = df_metrics['ascore'].round(1)
 
         for row in df_metrics.itertuples():
-            query =  f'UPDATE {table} SET ascore = %s WHERE {sub_field} = %s'
+            query = f'UPDATE {table} SET ascore = %s WHERE {sub_field} = %s'
             data = (row.ascore, row[1])       
             cursor.execute(query, data)
             connection.commit()

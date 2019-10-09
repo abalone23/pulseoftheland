@@ -1,6 +1,8 @@
 import re
 import json
 import os
+import shutil
+import sys
 import argparse
 from datetime import date, datetime, timedelta
 from pymongo import MongoClient
@@ -28,7 +30,6 @@ if args.quiet is not True:
 
 # print(f'count: {db.posts.estimated_document_count()}')
 
-
 if num_days == 'all':
     db.posts.drop()
     path_to_city_json = 'data/reddit/cities'
@@ -53,21 +54,24 @@ def to_dt(dict):
 def convert(list_of_dicts):
     return [to_dt(row) for row in list_of_dicts]
 
-# Insert into MongoDB:
-for json_file in json_city_files:
-    with open(f'data/reddit/cities/{json_file}', 'r') as f:
-        posts_cities_list = json.load(f)
-        try:
-            posts_cities_list = convert(posts_cities_list)
-        except TypeError:
-            raise
-        result = db.posts.insert_many(posts_cities_list)
+# Insert into MongoDB
+def insert_to_mongo(loc_type, json_files):
+    for json_file in json_files:
+        with open(f'data/reddit/{loc_type}/{json_file}', 'r') as f:
+            loc_list = json.load(f)
+            try:
+                loc_list = convert(loc_list)
+            except TypeError:
+                raise
+            result = db.posts.insert_many(loc_list)
 
-for json_file in json_state_files:
-    with open(f'data/reddit/states/{json_file}', 'r') as f:
-        posts_states_list = json.load(f)
-        try:
-            posts_states_list = convert(posts_states_list)
-        except TypeError:
-            raise
-        result = db.posts.insert_many(posts_states_list)
+insert_to_mongo('cities', json_city_files)
+insert_to_mongo('states', json_state_files)
+
+def move_files(loc_type, json_files):
+    for file in json_files:
+        shutil.move(os.path.join(f'data/reddit/{loc_type}', file), f'data/reddit/{loc_type}_archive')
+
+# cleanup
+move_files('states', json_state_files)
+move_files('cities', json_city_files)

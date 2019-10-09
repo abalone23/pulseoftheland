@@ -11,11 +11,11 @@
 
 ### Census
 The demographic data comes from:
-* Census 1
-* Census 2
+* [Census](https://www.census.gov/data/tables/time-series/demo/popest/2010s-total-cities-and-towns.html) (population)
+* [American Community Survey](https://factfinder.census.gov/faces/nav/jsf/pages/download_center.xhtml) (median income)
 
 ### Mapping
-Lat/Longs are retrieved using Google Reverse geocode service. Maps are generated using GeoPandas.
+Coordinates are retrieved using [Google Maps API](https://developers.google.com/maps/documentation) via the [googlemaps](https://github.com/googlemaps/google-maps-services-python) Python client library.
 
 ## Analysis
 ### Sentiment Analysis
