@@ -1,10 +1,10 @@
 # Pulse of the Land
 ## Introduction
-[Pulse of the Land](https://www.pulseoftheland.com) rates geographic areas ([states](https://github.com/abalone23/pulseoftheland/blob/master/reference/state_subs.csv) and [cities](https://github.com/abalone23/pulseoftheland/blob/master/reference/city_subs.csv)) around the United States based on sentiment analysis and topic modeling using posts from location-based subreddits on [Reddit](https://www.reddit.com) as well as demographic characteristics such as income and population from the census.
+[Pulse of the Land](https://www.pulseoftheland.com) tracks geographic areas ([states](https://github.com/abalone23/pulseoftheland/blob/master/reference/state_subs.csv) and [cities](https://github.com/abalone23/pulseoftheland/blob/master/reference/city_subs.csv)) around the United States based on sentiment analysis and topic modeling using posts from location-based subreddits on [Reddit](https://www.reddit.com) as well as demographic characteristics such as income and population from the census.
 
 ## Data
-### Reddit
-[Reddit](https://www.reddit.com) is a discussion website organized by subjects including geographic location. Information for the sentiment analysis and topic modeling is obtained from city and state location-based subreddits across the United States via the [Pushshift.io API wrapper](https://github.com/dmarx/psaw). Only locations with populations over 50,000 and over 1,000 subreddit subscribers are included.
+### [Reddit](https://www.reddit.com)
+Information for the sentiment analysis and topic modeling is obtained from city and state location-based subreddits across the United States via the [Pushshift.io API wrapper](https://github.com/dmarx/psaw). Only locations with populations over 50,000 and over 1,000 subreddit subscribers are included.
 
 * [51 states](https://github.com/abalone23/pulseoftheland/blob/master/reference/state_subs.csv) (including District of Columbia)
 * [235 cities](https://github.com/abalone23/pulseoftheland/blob/master/reference/city_subs.csv)
