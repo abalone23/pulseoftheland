@@ -84,29 +84,16 @@ Procedure:
             psql -d rpdb < ./sql/create_pg_tables.sql
         * Note: CREATE DATABASE rpdb; should be run previously
 
-14. prep_pg_tables.ipynb
+14. prep_pg_tables.py
     * INSERT states and cities data into Postgres
 
 15. model_cities.ipynb
     * NLP topic modeling etc
 
-16. export:
-    * run:
-        psql -d rpdb < ./sql/export_tables.sql
-
-    copy local to stage:
-    scp data/*.csv ec2metisprod:projects/rp/data
-
-    import:
-    * regenerate tables
-
-    * run:
-        psql -d rpdb < ./sql/import_tables.sql
-
-17. local wget to scrape website
+16. local wget to scrape website
     cd ~/python/projects/metis/project_5/cached_site
     * wget -q -e robots=off -m  http://ip_address:5000
 
-18. aws cli copy to s3
+17. aws cli copy to s3
     cd /path/to/stage_site/cached_site/ip_address:5000
     * aws s3 cp . s3://www.pulseoftheland.com --recursive --quiet
