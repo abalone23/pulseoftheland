@@ -12,6 +12,9 @@ api = PushshiftAPI()
 
 text = 'Get the latest NUMDAYS days of Reddit state data.'
 parser = argparse.ArgumentParser(description = text)
+
+# 180 is 60 + 120 (4 mo) range to generate the ascore graphs for past 60 days
+# the additional 5 days tacked on is for the lag to get full dataset for the day
 parser.add_argument("--numdays", "-n", help="set # days to retrieve: 1 or 180")
 parser.add_argument("--quiet", "-q", help="suppress output", action="store_true")
 
@@ -22,7 +25,7 @@ if args.quiet is not True:
         if args.numdays == '1':
             num_days = '5d'
         elif args.numdays == '180':
-            num_days = '180d'
+            num_days = '185d'
         else:
             print ('Error: Please select 1 or 180 days')
             sys.exit(2)

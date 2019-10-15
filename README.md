@@ -95,6 +95,3 @@ The web app runs on AWS.
     * textblob
 * MongoDB
 * PostgreSQL
-
-## Miscellaneous
-This is the final project for the SF15 Metis data science cohort. Thanks to Adam, Jonathan, Kelly and all my cohort mates over the summer.

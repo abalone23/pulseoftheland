@@ -19,9 +19,9 @@ args = parser.parse_args()
 
 if args.quiet is not True:
     if args.numdays:
-        if args.numdays == '1':
+        if args.numdays == '1': # run daily
             num_days = '1'
-        elif args.numdays == 'all':
+        elif args.numdays == 'all': # initial run
             num_days = 'all'
         else:
             print ('Error: Please select 1 or all')
@@ -31,7 +31,7 @@ if args.quiet is not True:
 # print(f'count: {db.posts.estimated_document_count()}')
 
 if num_days == 'all':
-    db.posts.drop()
+    db.posts.drop() # truncate posts table since everything willbe reloaded
     path_to_city_json = 'data/reddit/cities'
     json_city_files = [pos_json for pos_json in os.listdir(path_to_city_json) if pos_json.endswith('.json')]
 

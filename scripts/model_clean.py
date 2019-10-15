@@ -33,7 +33,9 @@ warnings.filterwarnings('ignore')
 # NMF topics
 num_topics = 10
 num_keywords = 8
-num_days = 90
+days_ago = 180 + 5 # 120 days ago + 60 days ago (for historical graphs) + 5 most recent days that aren't tracked
+num_days = 120 # 4 months
+iterations_to_run = 60
 
 with open('data/df_states.pkl', 'rb') as fp:
     df_states = pickle.load(fp)
@@ -46,7 +48,9 @@ db = client.r
 
 # today = datetime.today()
 # days_to_load = today - timedelta(days = days_ago)
-start = datetime(2019, 6, 10)
+
+start = datetime.now() - timedelta(days=days_ago)
+# start = datetime(2019, 6, 10)
 end = start + timedelta(days=num_days)
 
 day = timedelta(days=1)
@@ -564,10 +568,10 @@ def generate_models(posts, start, end):
 
     cursor.close()
 
-for i in range(1): # run once or twice for testing
-# for i in range(num_days):
+# for i in range(1): # run once or twice for testing
+for i in range(iterations_to_run):
     # Extract posts from MongoDB to list, DataFrame:
-    posts = list(db.posts.find({'post_date': {'$gte': start, '$lt': end}}))
+    posts = list(db.posts.find({'post_date': {'$gte': mydate_start, '$lt': mydate_end}}))
     posts_cnt = len(posts)
     if posts_cnt > 0:
         print(f'Start date: {mydate_start} End date: {mydate_end}, processing {posts_cnt}')

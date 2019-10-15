@@ -12,7 +12,9 @@ api = PushshiftAPI()
 
 text = 'Get the latest NUMDAYS days of Reddit city data.'
 parser = argparse.ArgumentParser(description = text)
-parser.add_argument("--numdays", "-n", help="set # days to retrieve: 1 or 180")
+
+# 240 is double the 120 (4 mo) range to generate the ascore graphs
+parser.add_argument("--numdays", "-n", help="set # days to retrieve: 1 or 240")
 parser.add_argument("--quiet", "-q", help="suppress output", action="store_true")
 
 args = parser.parse_args()
@@ -22,7 +24,7 @@ if args.quiet is not True:
         if args.numdays == '1':
             num_days = '5d'
         elif args.numdays == '180':
-            num_days = '180d'
+            num_days = '185d'
         else:
             print ('Error: Please select 1 or 180 days')
             sys.exit(2)
@@ -109,4 +111,5 @@ def get_posts(subreddit):
         prev_post_date_y = post_date_y
 
 for city_sub in city_subs:
+    print(city_sub)
     get_posts(city_sub)

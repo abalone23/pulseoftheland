@@ -1,5 +1,7 @@
 import pickle
 import os
+import sys
+import warnings
 import re
 import pandas as pd
 import geopandas as gpd
@@ -38,6 +40,8 @@ geo_df_cities_continental = geo_df_cities[(geo_df_cities['state_fip'] != 2) & (g
 
 fig, ax = plt.subplots(figsize = (30, 30))
 
+warnings.filterwarnings("ignore", category=UserWarning)
+
 # create US map
 usa_continental.plot(ax=ax, cmap='RdYlGn', edgecolor='#000000', linewidth=1, column='ascore', scheme='quantiles')
 
@@ -70,8 +74,7 @@ for x, y, label in zip(geo_df_cities_continental.geometry.x, geo_df_cities_conti
     if len(geo_df_cities_continental[(geo_df_cities_continental['pop_2018'] > 1000000) & (geo_df_cities_continental['city_short'] == label)]) == 1:
         ax.annotate(label, xy=(x, y), xytext=(3, 3), textcoords='offset points', size=20, weight='bold')
 plt.axis('off');
-plt.savefig('static/maps/united_states.png', transparent=True, bbox_inches='tight')
-
+plt.savefig('rpulse/static/maps/united_states.png', transparent=True, bbox_inches='tight')
 
 # create state maps
 for state_fip in df_states_all['state_fip']:
@@ -111,7 +114,7 @@ for state_fip in df_states_all['state_fip']:
                  ].plot(ax=ax, markersize=100, color='yellow', marker='o', alpha=.7);
 
     plt.axis('off');
-    plt.savefig(f'static/maps/state_{state_abbr.lower()}.png', transparent=True, bbox_inches='tight')
+    plt.savefig(f'rpulse/static/maps/state_{state_abbr.lower()}.png', transparent=True, bbox_inches='tight')
 
 # create city maps
 for state_fip in df_states_all['state_fip']:
@@ -157,4 +160,4 @@ for state_fip in df_states_all['state_fip']:
                 ax.annotate(label, xy=(x, y), xytext=(3, 3), textcoords='offset points', size=16)
         
         plt.axis('off');
-        plt.savefig(f'static/maps/city_{state_abbr.lower()}_{city_short_clean}.png', transparent=True, bbox_inches='tight')
+        plt.savefig(f'rpulse/static/maps/city_{state_abbr.lower()}_{city_short_clean}.png', transparent=True, bbox_inches='tight')
