@@ -3,6 +3,7 @@ tests/
 bak/
 data/
 static/
+logs/
 
 # custom score metric
 ascore.py
