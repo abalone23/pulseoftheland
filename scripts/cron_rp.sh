@@ -17,3 +17,13 @@ cd /home/asilver/projects/pulseoftheland
 
 # generate maps
 /home/asilver/venvs/rp/bin/python ./scripts/generate_maps.py
+
+# copy files
+nohup /home/asilver/venvs/rp/bin/python run.py &
+cd cached_site
+wget -q -e robots=off -m  http://13.52.85.42:5000
+pkill -f run.py
+
+# copy to S3
+cd 13.52.85.42:5000
+aws s3 cp . s3://www.pulseoftheland.com --recursive --quiet
