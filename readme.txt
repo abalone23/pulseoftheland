@@ -87,7 +87,7 @@ Procedure:
 14. prep_pg_tables.py
     * INSERT states and cities data into Postgres
 
-15. model_cities.ipynb
+15. model_clean.py
     * NLP topic modeling etc
 
 16. local wget to scrape website
