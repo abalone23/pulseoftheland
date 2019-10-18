@@ -35,7 +35,7 @@ num_topics = 10
 num_keywords = 8
 days_ago = 180 + 5 # 120 days ago + 60 days ago (for historical graphs) + 5 most recent days that aren't tracked
 num_days = 120 # 4 months
-iterations_to_run = 60
+iterations_to_run = 1
 
 with open('data/df_states.pkl', 'rb') as fp:
     df_states = pickle.load(fp)
