@@ -14,3 +14,6 @@ cd /home/asilver/projects/pulseoftheland
 
 # generate topic modeling/sentiment/ascores and insert results into PostgreSQL
 /home/asilver/venvs/rp/bin/python ./scripts/model_clean.py
+
+# generate maps
+/home/asilver/venvs/rp/bin/python ./scripts/generate_maps.py
