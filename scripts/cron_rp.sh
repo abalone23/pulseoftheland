@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # get latest permits from abc site and load into json files; insert permits to PostgreSQL
-source /home/asilver/.profile
+source /home/$USER/.profile
 
-cd /home/asilver/projects/pulseoftheland
+cd /home/$USER/projects/pulseoftheland
 
 # generate json files in data/reports:
 /home/asilver/venvs/rp/bin/python ./scripts/get_posts_states.py --numdays 1
@@ -21,9 +21,13 @@ cd /home/asilver/projects/pulseoftheland
 # copy files
 nohup /home/asilver/venvs/rp/bin/python run.py &
 cd cached_site
-wget -q -e robots=off -m  http://13.52.85.42:5000
+wget -q -e robots=off -m  http://$RP_IP_ADDR:5000
 pkill -f run.py
+rm -f nohup.out
 
 # copy to S3
-cd 13.52.85.42:5000
+cd $RP_IP_ADDR:5000
 aws s3 cp . s3://www.pulseoftheland.com --recursive --quiet
+
+# invalidate cached index.html
+aws cloudfront create-invalidation --distribution-id $RP_CF_DIST --paths /index.html
