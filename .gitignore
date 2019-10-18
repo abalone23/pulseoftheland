@@ -4,6 +4,7 @@ bak/
 data/
 static/
 logs/
+cached_site/
 
 # custom score metric
 ascore.py
