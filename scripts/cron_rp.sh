@@ -25,6 +25,11 @@ wget -q -e robots=off -m  http://$RP_IP_ADDR:5000
 pkill -f run.py
 rm -f nohup.out
 
+# delete dynamic S3 files
+aws s3 rm s3://www.pulseoftheland.com --quiet --recursive --exclude "*" --include "loc/*.html" \
+--include "topics/*.html" --include "keywords/*.html" --include "maps/*.png" \
+--include "graphs/*.png" --include /index.html
+
 # copy to S3
 cd $RP_IP_ADDR:5000
 aws s3 cp . s3://www.pulseoftheland.com --recursive --quiet
