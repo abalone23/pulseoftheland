@@ -1,3 +1,6 @@
+Pre-Steps:
+1. sudo apt install libspatialindex-dev # necessary for GeoPandas
+
 Procedure:
 1. generate_city_subs_raw.ipynb.ipynb
     * use PSAW api to retrieve city subs
