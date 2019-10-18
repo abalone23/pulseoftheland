@@ -5,6 +5,7 @@ import pandas as pd
 import psycopg2 as pg
 import pickle
 from collections import defaultdict, OrderedDict, Counter
+from datetime import datetime
 
 POSTGRES_USER = app.config["POSTGRES_USER"]
 POSTGRES_HOST = app.config["POSTGRES_HOST"]
@@ -14,6 +15,9 @@ POSTGRES_RMT_DB = app.config["POSTGRES_RMT_DB"]
 SECRET_KEY = app.config["SECRET_KEY"]
 
 con = pg.connect(f'dbname={POSTGRES_RMT_DB} user={POSTGRES_USER} host={POSTGRES_HOST}')
+
+now = datetime.utcnow()
+today = f'{now.year}-{now.month}-{now.day}'
 
 @app.route("/")
 def index():
@@ -57,7 +61,7 @@ def index():
 
     return render_template('index.html',
                             title='Pulse of the Land',
-                            states=states_dict, topcities=topcities)
+                            states=states_dict, topcities=topcities, today=today)
 
 @app.route("/loc/<state_abbr>.html")
 def state(state_abbr):
@@ -114,7 +118,7 @@ def state(state_abbr):
         
             cities_dict[city_url] = [pop_2018, city_name, city_url, clean_topics, sentiment_compound, median_hh_income, sentiment_rating, ascore]
         
-        return render_template('state.html', title=state_info['state_name'], state_info=state_info, cities=cities_dict, state_abbr=state_abbr)
+        return render_template('state.html', title=state_info['state_name'], state_info=state_info, cities=cities_dict, state_abbr=state_abbr, today=today)
     else:
         return '404'
 
@@ -186,19 +190,19 @@ def city(state_abbr, city):
     topic_dict = OrderedDict(sorted(topic_dict.items()))
     # topic_dict = sorted(topic_dict.keys())
     # print(topic_dict)
-    return render_template('cities.html', title=city_info['city_name']+', '+city_info['state_name'], topics=topics, state_abbr=state_abbr, city_info=city_info, topic_dict=topic_dict)
+    return render_template('cities.html', title=city_info['city_name']+', '+city_info['state_name'], topics=topics, state_abbr=state_abbr, city_info=city_info, topic_dict=topic_dict, today=today)
 
 @app.route("/about.html")
 def about():
-    return render_template('about.html', title='About')
+    return render_template('about.html', title='About', today=today)
 
 @app.route("/terms.html")
 def terms():
-    return render_template('terms.html', title='Terms')
+    return render_template('terms.html', title='Terms', today=today)
 
 @app.route("/privacy.html")
 def privacy():
-    return render_template('privacy.html', title='Privacy')
+    return render_template('privacy.html', title='Privacy', today=today)
 
 @app.route("/keywords/<keyword>.html")
 def keywords(keyword):
@@ -220,7 +224,7 @@ def keywords(keyword):
     cur.execute(query, data)
     keywords = cur.fetchall()
 
-    return render_template('keywords.html', title=keyword, kw_info=keywords, keyword=keyword, keyword_spaces=keyword_spaces)
+    return render_template('keywords.html', title=keyword, kw_info=keywords, keyword=keyword, keyword_spaces=keyword_spaces, today=today)
 
 @app.route("/topics/<topic>.html")
 def topics(topic):
@@ -239,4 +243,4 @@ def topics(topic):
     cur.execute(query, data)
     topics = cur.fetchall()
 
-    return render_template('topics.html', title=topic, topic_info=topics, topic=topic, topic_spaces=topic_spaces)
+    return render_template('topics.html', title=topic, topic_info=topics, topic=topic, topic_spaces=topic_spaces, today=today)
