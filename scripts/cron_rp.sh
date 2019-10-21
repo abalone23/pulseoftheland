@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# get latest permits from abc site and load into json files; insert permits to PostgreSQL
 source ~/.profile
 
 cd projects/pulseoftheland
