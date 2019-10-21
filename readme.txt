@@ -1,5 +1,6 @@
 Pre-Steps:
 1. sudo apt install libspatialindex-dev # necessary for GeoPandas
+2. pip3 install awscli --upgrade --user # necessary to copy files to S3
 
 Procedure:
 1. generate_city_subs_raw.ipynb.ipynb
@@ -94,6 +95,7 @@ Procedure:
     * NLP topic modeling etc
 
 16. local wget to scrape website
+    python run.py
     cd ~/python/projects/metis/project_5/cached_site
     * wget -q -e robots=off -m  http://ip_address:5000
 
