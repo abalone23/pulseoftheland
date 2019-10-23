@@ -28,7 +28,7 @@ cd $RP_IP_ADDR:5000
 # make sure index.html exists before copying files
 if [ -e index.html ]
 then
-    echo "index.html exists, contionue with aws commands"
+    echo "index.html exists, continue with aws commands"
 
     # delete dynamic S3 files
     aws s3 rm s3://www.pulseoftheland.com --quiet --recursive --exclude "*" --include "loc/*.html" \
