@@ -75,7 +75,7 @@ A total of ten tables are used in the PostgreSQL schema. ([notebook](https://git
 [pulseoftheland.com](https://www.pulseoftheland.com) is published using the web application framework [Flask](https://palletsprojects.com/p/flask/). It is then scraped internally using wget and the static files are uploaded to a public AWS S3 bucket 
 
 ## Workflow
-The above process using the previous three month's data is scheduled to run on a daily basis via Apache Airflow:
+The above process using the previous three month's data is scheduled to run on a daily basis:
 1. Retrieve latest reddit data
 2. Load into MongoDB
 3. Run sentiment analysis
