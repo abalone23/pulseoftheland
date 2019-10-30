@@ -5,10 +5,15 @@ import shutil
 import sys
 import argparse
 from datetime import date, datetime, timedelta
-from pymongo import MongoClient
+from pymongo import MongoClient, errors
 
-client = MongoClient()
-db = client.r
+try:
+    client = MongoClient()
+    db = client.r
+    client.server_info() # needed for try/except
+except errors.ServerSelectionTimeoutError as err:
+    print(f'Unable to connect to MongoDB: {err}')
+    sys.exit(1)
 
 text = 'Load Reddit json data into Mongo.'
 parser = argparse.ArgumentParser(description = text)
@@ -63,6 +68,7 @@ def insert_to_mongo(loc_type, json_files):
                 loc_list = convert(loc_list)
             except TypeError:
                 raise
+            
             result = db.posts.insert_many(loc_list)
 
 insert_to_mongo('cities', json_city_files)
@@ -70,7 +76,10 @@ insert_to_mongo('states', json_state_files)
 
 def move_files(loc_type, json_files):
     for file in json_files:
-        shutil.move(os.path.join(f'data/reddit/{loc_type}', file), f'data/reddit/{loc_type}_archive')
+        try:
+            shutil.move(os.path.join(f'data/reddit/{loc_type}', file), f'data/reddit/{loc_type}_archive')
+        except shutil.Error:
+            print(f'Destination path already exists: {loc_type}_archive - {file}')
 
 # cleanup
 move_files('states', json_state_files)
