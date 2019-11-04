@@ -4,26 +4,24 @@ source ~/.profile
 
 cd projects/pulseoftheland
 
-# generate json files in data/reports:
+echo "Generating json files in data/reports"
 ~/venvs/rp/bin/python ./scripts/get_posts_states.py --numdays 1
 ~/venvs/rp/bin/python ./scripts/get_posts_cities.py --numdays 1
 
-# load data from json files into Mongo and archive processed files
+echo "loading data from json files into Mongo and archive processed files"
 ~/venvs/rp/bin/python ./scripts/load_mongo.py --numdays 1
 
-# generate topic modeling/sentiment/ascores and insert results into PostgreSQL
+echo "Generating topic modeling/sentiment/ascores and insert results into PostgreSQL"
 ~/venvs/rp/bin/python ./scripts/model_clean.py
 
-# generate maps
+echo "Generating maps"
 ~/venvs/rp/bin/python ./scripts/generate_maps.py
 
-# copy files
-~/venvs/rp/bin/python run.py > logs/pythonrun.txt
+echo "Copy files via wget"
 cd cached_site
-wget -q -e robots=off -m  http://$RP_IP_ADDR:5000
-pkill -f run.py
+wget -q -e robots=off -m --user $RP_BASIC_USER --password $RP_BASIC_PASS http://$RP_IP_ADDR:$RP_PORT
 
-cd $RP_IP_ADDR:5000
+cd $RP_IP_ADDR:$RP_PORT
 
 # make sure index.html exists before copying files
 if [ -e index.html ]
