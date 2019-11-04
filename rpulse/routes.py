@@ -17,7 +17,7 @@ SECRET_KEY = app.config["SECRET_KEY"]
 con = pg.connect(f'dbname={POSTGRES_RMT_DB} user={POSTGRES_USER} host={POSTGRES_HOST}')
 
 now = datetime.utcnow()
-today = f'{now.year}-{now.month}-{now.day}'
+today = now.strftime("%Y-%m-%d")
 
 @app.route("/")
 def index():
